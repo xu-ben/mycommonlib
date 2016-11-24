@@ -8,6 +8,9 @@
 #include <time.h>
 #include <ctype.h>
 
+//linux
+#include <endian.h>
+
 //other c
 
 //ansi c++
