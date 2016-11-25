@@ -25,8 +25,9 @@ inline uint64_t GetCurrentTimeMillis() {
 #ifdef __USE_ISOC11
 	struct timespec ts;
 	timespec_get(&ts, TIME_UTC);
-	return (uint64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
-#elif defined _SYS_TIME_H_
+	return ((uint64_t) ts.tv_sec) * 1000 + ts.tv_nsec / 1000000;
+//TODO 下面这一行的宏定义, 可能存在兼容性问题, 但目前在多个平台测试还没有发现问题,发现再改
+#elif defined _STRUCT_TIMEVAL || defined _TIMEVAL_DEFINED
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
 	return ((uint64_t) tv.tv_sec) * 1000 + tv.tv_usec / 1000;
